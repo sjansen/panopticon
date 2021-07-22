@@ -25,7 +25,7 @@ type Config struct {
 	SAML SAML
 }
 
-// CloudFront contains settings for the webui CDN.
+// CloudFront contains settings for the app CDN.
 type CloudFront struct {
 	KeyID      string     `envconfig:"PANOPTICON_CLOUDFRONT_KEY_ID"`
 	PrivateKey PrivateKey `envconfig:"PANOPTICON_CLOUDFRONT_PRIVATE_KEY"`
@@ -40,7 +40,7 @@ type SAML struct {
 	PrivateKey  string `envconfig:"PANOPTICON_SAML_PRIVATE_KEY"`
 }
 
-// SessionStore contains setting for webui sessions.
+// SessionStore contains setting for app sessions.
 type SessionStore struct {
 	Create   bool   `envconfig:"PANOPTICON_SESSION_CREATE,default=false"`
 	Endpoint URL    `envconfig:"PANOPTICON_SESSION_ENDPOINT,optional"`
