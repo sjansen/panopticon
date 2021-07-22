@@ -1,0 +1,21 @@
+version: '2.1'
+services:
+  dynamodb:
+    image: 'amazon/dynamodb-local'
+  go:
+    build:
+      context: ./docker/go
+    command: ./scripts/run-all-tests
+    depends_on:
+      - dynamodb
+    environment:
+      AWS_REGION: us-east-2
+      GO111MODULE: "on"
+      PANOPTICON_LISTEN: "0.0.0.0:8080"
+      PANOPTICON_SESSION_CREATE: "true"
+      PANOPTICON_SESSION_ENDPOINT: "http://dynamodb:8000"
+      PANOPTICON_SESSION_TABLE: "panopticon-sessions"
+    volumes:
+      - .:/go/src/github.com/sjansen/panopticon
+      - "${GOPATH:-/tmp}/pkg/mod:/go/pkg/mod"
+    working_dir: /go/src/github.com/sjansen/panopticon

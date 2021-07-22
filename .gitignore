@@ -2,6 +2,7 @@
 /.idea/
 /.vscode/
 /archive/
+/dist/
 .terraform/
 
 # Files
